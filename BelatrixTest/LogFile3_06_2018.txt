@@ -1,0 +1,24 @@
+3/06/2018 14:12:35 [1]FATAL: (LAPTOP-758CV4OC/ Eduardo) Fatal Error found. ->Se produjo una excepción de tipo 'System.Exception'. // 
+3/06/2018 14:12:35 [2]ERROR: (LAPTOP-758CV4OC/ Eduardo) Error found. ->Se produjo una excepción de tipo 'System.Exception'. // 
+3/06/2018 14:12:35 [3]WARNING: (LAPTOP-758CV4OC/ Eduardo) Warning found. ->Se produjo una excepción de tipo 'System.Exception'. // 
+3/06/2018 14:12:35 [4]INFO: (LAPTOP-758CV4OC/ Eduardo) Informative message. 
+3/06/2018 14:12:35 [6]TRACE: (LAPTOP-758CV4OC/ Eduardo) Trace message. 
+3/06/2018 14:12:35 [5]DEBUG: (LAPTOP-758CV4OC/ Eduardo) Debug message. 
+3/06/2018 14:36:45 [1]FATAL: (LAPTOP-758CV4OC/ Eduardo) Fatal Error found. ->Se produjo una excepción de tipo 'System.Exception'. // 
+3/06/2018 14:36:45 [2]ERROR: (LAPTOP-758CV4OC/ Eduardo) Error found. ->Se produjo una excepción de tipo 'System.Exception'. // 
+3/06/2018 14:36:45 [3]WARNING: (LAPTOP-758CV4OC/ Eduardo) Warning found. ->Se produjo una excepción de tipo 'System.Exception'. // 
+3/06/2018 14:36:45 [4]INFO: (LAPTOP-758CV4OC/ Eduardo) Informative message. 
+3/06/2018 14:36:45 [5]DEBUG: (LAPTOP-758CV4OC/ Eduardo) Debug message. 
+3/06/2018 14:36:45 [6]TRACE: (LAPTOP-758CV4OC/ Eduardo) Trace message. 
+3/06/2018 14:43:13 [1]FATAL: (LAPTOP-758CV4OC/ Eduardo) Fatal Error found. ->Se produjo una excepción de tipo 'System.Exception'. // 
+3/06/2018 14:43:13 [2]ERROR: (LAPTOP-758CV4OC/ Eduardo) Error found. ->Se produjo una excepción de tipo 'System.Exception'. // 
+3/06/2018 14:43:13 [3]WARNING: (LAPTOP-758CV4OC/ Eduardo) Warning found. ->Se produjo una excepción de tipo 'System.Exception'. // 
+3/06/2018 14:43:13 [4]INFO: (LAPTOP-758CV4OC/ Eduardo) Informative message. 
+3/06/2018 14:43:13 [5]DEBUG: (LAPTOP-758CV4OC/ Eduardo) Debug message. 
+3/06/2018 14:43:14 [6]TRACE: (LAPTOP-758CV4OC/ Eduardo) Trace message. 
+3/06/2018 15:25:52 [1]FATAL :(LAPTOP-758CV4OC/Eduardo) Fatal Error found. // ->Se produjo una excepción de tipo 'System.Exception'. // 
+3/06/2018 15:25:52 [2]ERROR :(LAPTOP-758CV4OC/Eduardo) Error found. // ->Se produjo una excepción de tipo 'System.Exception'. // 
+3/06/2018 15:25:52 [3]WARNING :(LAPTOP-758CV4OC/Eduardo) Warning found. // ->Se produjo una excepción de tipo 'System.Exception'. // 
+3/06/2018 15:25:52 [4]INFO :(LAPTOP-758CV4OC/Eduardo) Informative message. // 
+3/06/2018 15:25:52 [5]DEBUG :(LAPTOP-758CV4OC/Eduardo) Debug message. // 
+3/06/2018 15:25:52 [6]TRACE :(LAPTOP-758CV4OC/Eduardo) Trace message. // 
