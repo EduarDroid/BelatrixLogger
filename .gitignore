@@ -243,4 +243,4 @@ ModelManifest.xml
 /.project
 
 # Config
-*.config
+#*.config
