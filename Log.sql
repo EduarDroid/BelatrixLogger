@@ -1,0 +1,163 @@
+﻿USE [master]
+GO
+/****** Object:  Database [BelatrixLogger]    Script Date: 3/06/2018 21:30:03 ******/
+CREATE DATABASE [BelatrixLogger]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'BelatrixLogger', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL13.SQLEXPRESS\MSSQL\DATA\BelatrixLogger.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'BelatrixLogger_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL13.SQLEXPRESS\MSSQL\DATA\BelatrixLogger_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+GO
+ALTER DATABASE [BelatrixLogger] SET COMPATIBILITY_LEVEL = 130
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [BelatrixLogger].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [BelatrixLogger] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [BelatrixLogger] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [BelatrixLogger] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [BelatrixLogger] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [BelatrixLogger] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [BelatrixLogger] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [BelatrixLogger] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [BelatrixLogger] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [BelatrixLogger] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [BelatrixLogger] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [BelatrixLogger] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [BelatrixLogger] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [BelatrixLogger] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [BelatrixLogger] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [BelatrixLogger] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [BelatrixLogger] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [BelatrixLogger] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [BelatrixLogger] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [BelatrixLogger] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [BelatrixLogger] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [BelatrixLogger] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [BelatrixLogger] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [BelatrixLogger] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [BelatrixLogger] SET  MULTI_USER 
+GO
+ALTER DATABASE [BelatrixLogger] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [BelatrixLogger] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [BelatrixLogger] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [BelatrixLogger] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [BelatrixLogger] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [BelatrixLogger] SET QUERY_STORE = OFF
+GO
+USE [BelatrixLogger]
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET LEGACY_CARDINALITY_ESTIMATION = OFF;
+GO
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET LEGACY_CARDINALITY_ESTIMATION = PRIMARY;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET MAXDOP = 0;
+GO
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET MAXDOP = PRIMARY;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET PARAMETER_SNIFFING = ON;
+GO
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET PARAMETER_SNIFFING = PRIMARY;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET QUERY_OPTIMIZER_HOTFIXES = OFF;
+GO
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET QUERY_OPTIMIZER_HOTFIXES = PRIMARY;
+GO
+USE [BelatrixLogger]
+GO
+/****** Object:  User [eduardo]    Script Date: 3/06/2018 21:30:04 ******/
+CREATE USER [eduardo] FOR LOGIN [eduardo] WITH DEFAULT_SCHEMA=[dbo]
+GO
+ALTER ROLE [db_owner] ADD MEMBER [eduardo]
+GO
+ALTER ROLE [db_datareader] ADD MEMBER [eduardo]
+GO
+ALTER ROLE [db_datawriter] ADD MEMBER [eduardo]
+GO
+/****** Object:  Table [dbo].[Logs]    Script Date: 3/06/2018 21:30:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Logs](
+    [LogId] [int] IDENTITY(1,1) NOT NULL,
+    [Level] [tinyint] NOT NULL,
+    [Message] [nvarchar](4000) NULL,
+    [StackTrace] [nvarchar](4000) NULL,
+    [MachineName] [nvarchar](100) NOT NULL,
+    [UserName] [nvarchar](100) NOT NULL,
+    [CreatedDate] [datetime] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+    [LogId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Logs] ADD  DEFAULT ((0)) FOR [Level]
+GO
+/****** Object:  StoredProcedure [dbo].[Logsave]    Script Date: 3/06/2018 21:30:05 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+Create Procedure [dbo].[Logsave]
+              @Level       TinyInt        = 0
+            , @Message     NVarChar(4000) = ''
+            , @Stacktrace  NVarChar(4000) = ''
+            , @Machinename NVarChar(100)  = ''
+            , @Username    NVarChar(100)  = ''
+            , @Createddate DateTime
+As
+Begin
+    Insert Into [Logs] (
+        [Level]
+      , [Message]
+      , [Stacktrace]
+      , [Machinename]
+      , [Username]
+      , [Createddate] )
+    Values
+         (
+         @Level
+        , @Message
+        , @Stacktrace
+        , @Machinename
+        , @Username
+        , @Createddate
+         );
+End;
+GO
+USE [master]
+GO
+ALTER DATABASE [BelatrixLogger] SET  READ_WRITE 
+GO
